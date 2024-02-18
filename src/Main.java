@@ -39,7 +39,8 @@ public class Main {
                     System.out.println("Enter car brand:");
                     newCar.setBrend(scanner.next());
                     System.out.println("Enter car condition:");
-                    newCar.setCondition(scanner.next());
+                    scanner.nextLine();
+                    newCar.setCondition(scanner.nextLine());
                     System.out.println("Enter car year:");
                     newCar.setYear(scanner.nextInt());
                     System.out.println("Enter car price:");

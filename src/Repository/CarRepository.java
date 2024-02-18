@@ -39,7 +39,7 @@ public class CarRepository {
     public  List<Car> getAll() {
         List<Car> cars = new ArrayList<>();
         try {
-            String query = "SELECT * FROM Clients ORDER BY id asc ;";
+            String query = "SELECT * FROM cars ORDER BY id asc ;";
             PreparedStatement st = connection.prepareStatement(query);
             ResultSet resultSet = st.executeQuery();
             while (resultSet.next()) {
@@ -57,23 +57,22 @@ public class CarRepository {
         }
     }
 
-    public void save(Car cars){
-        String sql = "INSERT INTO car(name, condition, year, price) values(?,?,?,?)";
-        try{
+    public void save(Car car) {
+        String sql = "INSERT INTO cars(brend, condition, year, price) VALUES (?, ?, ?, ?)";
+        try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, cars.getBrend());
-            stmt.setString(2, cars.getCondition());
-            stmt.setInt(3, cars.getYear());
-            stmt.setInt(4, cars.getPrice());
+            stmt.setString(1, car.getBrend());
+            stmt.setString(2, car.getCondition());
+            stmt.setInt(3, car.getYear());
+            stmt.setInt(4, car.getPrice());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Failed to upload book");
+            System.out.println("Failed to upload car");
             e.printStackTrace();
-
         }
     }
     public void update( Car car){
-        String sql = "UPDATE cars SET brend = ?, condition = ?, year = ?, price = ?, WHERE id = ?";
+        String sql = "UPDATE cars SET brend = ?, condition = ?, year = ?, price = ? WHERE id = ?";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, car.getBrend());
@@ -83,7 +82,7 @@ public class CarRepository {
             stmt.setInt(5,car.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Failed to upload book");
+            System.out.println("Failed to upload car");
             e.printStackTrace();
 
         }
