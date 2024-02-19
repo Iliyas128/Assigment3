@@ -45,9 +45,14 @@ public class Main {
                     newCar.setYear(scanner.nextInt());
                     System.out.println("Enter car price:");
                     newCar.setPrice(scanner.nextInt());
-                    carRepository.save(newCar);
-                    System.out.println("New car saved: " + newCar);
+                    try {
+                        carRepository.save(newCar);
+                        System.out.println("New car saved: " + newCar);
+                    } catch (Exception e) {
+                        System.out.println("Failed to save new car: " + e.getMessage());
+                    }
                     break;
+
                 case 4:
                     Car existingCar = new Car();
                     System.out.println("Enter car id to update:");

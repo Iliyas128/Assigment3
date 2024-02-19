@@ -9,19 +9,17 @@ public class Car {
 
     private int price;
 
+    public Car() {
 
+    }
 
-    public Car(int id,String brend,int year, String condition, int price){
-        this.id=id;
+    public Car(String brend,int year, String condition, int price){
         this.brend=brend;
         this.year=year;
         this.condition=condition;
         this.price=price;
     }
 
-    public Car() {
-
-    }
 
     public int getId() {
         return id;

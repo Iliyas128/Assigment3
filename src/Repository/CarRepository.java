@@ -9,13 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class CarRepository {
+public class CarRepository {private static final AtomicInteger count = new AtomicInteger(0);
     private Connection connection= PostgreSQL.getConnection();
 
     public CarRepository() throws Exception {
 
     }
+
 
     public Car getById(int id) throws Exception {
         String sql = "SELECT * FROM cars WHERE id = ?";
@@ -49,7 +51,7 @@ public class CarRepository {
                 car.setCondition(resultSet.getString("condition"));
                 car.setYear(resultSet.getInt("year"));
                 car.setPrice(resultSet.getInt("price"));
-
+                cars.add(car);
             }
             return cars;
         } catch (SQLException e) {
@@ -71,6 +73,8 @@ public class CarRepository {
             e.printStackTrace();
         }
     }
+
+
     public void update( Car car){
         String sql = "UPDATE cars SET brend = ?, condition = ?, year = ?, price = ? WHERE id = ?";
         try{
