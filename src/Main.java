@@ -1,6 +1,7 @@
 import Models.Car;
 import Repository.CarRepository;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -57,6 +58,13 @@ public class Main {
                     Car existingCar = new Car();
                     System.out.println("Enter car id to update:");
                     existingCar.setId(scanner.nextInt());
+                    System.out.println("Enter brand:");
+                    existingCar.setBrend(scanner.next());
+                    System.out.println("Enter the year:");
+                    existingCar.setYear(scanner.nextInt());
+                    System.out.println("Enter the condition:");
+                    scanner.nextLine();
+                    existingCar.setCondition(scanner.nextLine());
                     System.out.println("Enter updated price:");
                     existingCar.setPrice(scanner.nextInt());
                     carRepository.update(existingCar);
