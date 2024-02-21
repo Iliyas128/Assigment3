@@ -90,7 +90,7 @@ public class Car {
                 ", year=" + year +
                 ", condition='" + condition + '\'' +
                 ", price=" + price +
-                ", number of owner=" + number +
+                ", Contact number of owner=" + number +
                 '}';
     }
 }
