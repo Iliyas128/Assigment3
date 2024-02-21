@@ -60,8 +60,12 @@ public class CarService {
         newCar.setYear(scanner.nextInt());
         System.out.println("Enter car price:");
         newCar.setPrice(scanner.nextInt());
+        System.out.println("Enter the contact number of owner:");
+        scanner.nextLine();
+        newCar.setNumber(scanner.nextLine());
         carRepository.save(newCar);
         System.out.println("New car saved: " + newCar);
+
     }
 
 

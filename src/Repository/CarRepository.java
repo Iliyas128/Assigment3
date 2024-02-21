@@ -32,6 +32,7 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
                 car.setCondition(resultSet.getString("condition"));
                 car.setYear(resultSet.getInt("year"));
                 car.setPrice(resultSet.getInt("price"));
+                car.setNumber(resultSet.getString("number"));
                 return car;
             } else return null;
         } catch (SQLException e) {
@@ -52,6 +53,7 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
                 car.setCondition(resultSet.getString("condition"));
                 car.setYear(resultSet.getInt("year"));
                 car.setPrice(resultSet.getInt("price"));
+                car.setNumber(resultSet.getString("number"));
                 cars.add(car);
             }
             return cars;
@@ -61,7 +63,7 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
     }
 
     public void save(Car car) {
-        String sql = "INSERT INTO cars(brend, model, condition, year, price) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO cars(brend, model, condition, year, price, number) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, car.getBrend());
@@ -69,6 +71,7 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
             stmt.setString(3, car.getCondition());
             stmt.setInt(4, car.getYear());
             stmt.setInt(5, car.getPrice());
+            stmt.setString(6,car.getNumber());
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Failed to upload carsave");
@@ -78,7 +81,7 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
 
 
     public void update( Car car){
-        String sql = "UPDATE cars SET brend = ?, model = ?, condition = ?, year = ?, price = ? WHERE id = ?";
+        String sql = "UPDATE cars SET brend = ?, model = ?, condition = ?, year = ?, price = ?, number = ? WHERE id = ?";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, car.getBrend());
@@ -87,6 +90,7 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
             stmt.setInt(4, car.getYear());
             stmt.setDouble(5, car.getPrice());
             stmt.setInt(6,car.getId());
+            stmt.setString(7,car.getNumber());
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Failed to upload carupd");
@@ -123,6 +127,7 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
                 car.setCondition(resultSet.getString("condition"));
                 car.setYear(resultSet.getInt("year"));
                 car.setPrice(resultSet.getInt("price"));
+                car.setNumber(resultSet.getString("number"));
                 cars.add(car);
             }
         } catch (SQLException e) {

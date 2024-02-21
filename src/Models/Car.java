@@ -9,17 +9,19 @@ public class Car {
     private String condition;
 
     private int price;
+    private String number;
 
     public Car() {
 
     }
 
-    public Car(String brend, String model,int year, String condition, int price){
+    public Car(String brend, String model,int year, String condition, int price, String number){
         this.brend=brend;
         this.model = model;
         this.year=year;
         this.condition=condition;
         this.price=price;
+        this.number=number;
     }
 
 
@@ -71,6 +73,14 @@ public class Car {
         this.price = price;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -80,6 +90,7 @@ public class Car {
                 ", year=" + year +
                 ", condition='" + condition + '\'' +
                 ", price=" + price +
+                ", number of owner=" + number +
                 '}';
     }
 }
