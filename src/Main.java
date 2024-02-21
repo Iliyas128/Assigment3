@@ -1,3 +1,4 @@
+import Methods.CarService;
 import Models.Car;
 import Repository.CarRepository;
 
@@ -13,6 +14,7 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        CarService carService = new CarService(carRepository);
         Scanner scanner = new Scanner(System.in);
 
         try {
@@ -24,6 +26,7 @@ public class Main {
                 System.out.println("4. Update an existing car");
                 System.out.println("5. Delete a car by id");
                 System.out.println("6. Exit");
+                System.out.println("7. Search car by model");
                 System.out.println("Enter your choice:");
 
                 int choice = scanner.nextInt();
@@ -42,18 +45,7 @@ public class Main {
                         }
                         break;
                     case 3:
-                        Car newCar = new Car();
-                        System.out.println("Enter car brand:");
-                        newCar.setBrend(scanner.next());
-                        System.out.println("Enter car condition:");
-                        scanner.nextLine();
-                        newCar.setCondition(scanner.nextLine());
-                        System.out.println("Enter car year:");
-                        newCar.setYear(scanner.nextInt());
-                        System.out.println("Enter car price:");
-                        newCar.setPrice(scanner.nextInt());
-                        carRepository.save(newCar);
-                        System.out.println("New car saved: " + newCar);
+                        carService.addCar();
                         break;
                     case 4:
                         Car existingCar = new Car();
@@ -73,6 +65,16 @@ public class Main {
                     case 6:
                         exit = true;
                         break;
+                    case 7:
+                        System.out.println("Enter car model to search:");
+                        String model = scanner.next();
+                        List<Car> carsByModel = carRepository.getByModel(model);
+                        System.out.println("Cars with model " + model + ":");
+                        for (Car car : carsByModel) {
+                            System.out.println(car);
+                        }
+                        break;
+
                     default:
                         System.out.println("Invalid choice");
                 }

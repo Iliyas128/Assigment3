@@ -48,6 +48,7 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
                 Car car = new Car();
                 car.setId(resultSet.getInt("id"));
                 car.setBrend(resultSet.getString("brend"));
+                car.setModel(resultSet.getString("model"));
                 car.setCondition(resultSet.getString("condition"));
                 car.setYear(resultSet.getInt("year"));
                 car.setPrice(resultSet.getInt("price"));
@@ -60,48 +61,74 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
     }
 
     public void save(Car car) {
-        String sql = "INSERT INTO cars(brend, condition, year, price) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO cars(brend, model, condition, year, price) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, car.getBrend());
-            stmt.setString(2, car.getCondition());
-            stmt.setInt(3, car.getYear());
-            stmt.setInt(4, car.getPrice());
+            stmt.setString(2, car.getModel());
+            stmt.setString(3, car.getCondition());
+            stmt.setInt(4, car.getYear());
+            stmt.setInt(5, car.getPrice());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Failed to upload car");
+            System.out.println("Failed to upload carsave");
             e.printStackTrace();
         }
     }
 
 
     public void update( Car car){
-        String sql = "UPDATE cars SET brend = ?, condition = ?, year = ?, price = ? WHERE id = ?";
+        String sql = "UPDATE cars SET brend = ?, model = ?, condition = ?, year = ?, price = ? WHERE id = ?";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, car.getBrend());
-            stmt.setString(2, car.getCondition());
-            stmt.setInt(3, car.getYear());
-            stmt.setDouble(4, car.getPrice());
-            stmt.setInt(5,car.getId());
+            stmt.setString(2, car.getModel());
+            stmt.setString(3, car.getCondition());
+            stmt.setInt(4, car.getYear());
+            stmt.setDouble(5, car.getPrice());
+            stmt.setInt(6,car.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Failed to upload car");
+            System.out.println("Failed to upload carupd");
             e.printStackTrace();
 
         }
 
     }
 
-    public void delete(int id){
+    public void delete(int id) {
         String sql = "DELETE FROM cars WHERE id = ?";
-        try{
+        try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Failed to delete book");
+            System.out.println("Failed to delete car");
             e.printStackTrace();
         }
+
     }
+    public List<Car> getByModel(String model) {
+        List<Car> cars = new ArrayList<>();
+        String sql = "SELECT * FROM cars WHERE model = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, model);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                Car car = new Car();
+                car.setId(resultSet.getInt("id"));
+                car.setBrend(resultSet.getString("brend"));
+                car.setModel(resultSet.getString("model"));
+                car.setCondition(resultSet.getString("condition"));
+                car.setYear(resultSet.getInt("year"));
+                car.setPrice(resultSet.getInt("price"));
+                cars.add(car);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cars;
+    }
+
 }

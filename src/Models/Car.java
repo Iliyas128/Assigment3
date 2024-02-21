@@ -3,6 +3,7 @@ package Models;
 public class Car {
     private int id;
     private String brend;
+    private String model;
     private int year;
 
     private String condition;
@@ -13,8 +14,9 @@ public class Car {
 
     }
 
-    public Car(String brend,int year, String condition, int price){
+    public Car(String brend, String model,int year, String condition, int price){
         this.brend=brend;
+        this.model = model;
         this.year=year;
         this.condition=condition;
         this.price=price;
@@ -45,6 +47,14 @@ public class Car {
         this.brend = brend;
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public String getCondition() {
         return condition;
     }
@@ -66,6 +76,7 @@ public class Car {
         return "Car{" +
                 "id=" + id +
                 ", brend='" + brend + '\'' +
+                ", model='" + model + '\'' +
                 ", year=" + year +
                 ", condition='" + condition + '\'' +
                 ", price=" + price +
