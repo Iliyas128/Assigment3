@@ -11,7 +11,7 @@ import java.util.*;
 public class CarService {
     private HashMap<String, ArrayList<String>> cars = new HashMap<>();
     private CarRepository carRepository;
-
+    Scanner scanner=new Scanner(System.in);
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
         // Initialize your car brands and models here
@@ -68,7 +68,60 @@ public class CarService {
 
     }
 
+    public void GetAll(){}
+    public void GetCar(){}
+    public void UpdateCar() throws Exception {
+        System.out.println("-------------------------------------------------------");
+        System.out.print("Which car u want to update , enter id:");
+        int id=scanner.nextInt();
+        Car car=carRepository.getById(id);
+        String brend;
+        String model;
+         int year;
 
+         String condition;
+
+         int price;
+         String number;
+        if (car!=null){
+            System.out.print("Enter model:");
+             model=scanner.next();
+            System.out.print("Enter brend:");
+            brend=scanner.next();
+            System.out.print("Enter condition:");
+            condition=scanner.next();
+            System.out.print("Enter year:");
+            year= scanner.nextInt();
+            System.out.println("Enter price:");
+            price=scanner.nextInt();
+            System.out.print("Enter number:");
+            number=scanner.next();
+
+            car.setModel(model);
+
+        }
+
+    }
+
+    public Car getCarById(int id) {
+        try {
+            return carRepository.getById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Car> getAllCars(String sortBy) {
+    return carRepository.getAll(sortBy);}
+
+    public void updateCar(Car car) {
+    carRepository.update(car);}
+
+    public void deleteCar(int id) {
+    carRepository.delete(id);}
+
+    public List<Car> getCarsByModel(String model) {
+    return carRepository.getByModel(model);}
 
 
     // Move other car-related methods from your Main class to here
