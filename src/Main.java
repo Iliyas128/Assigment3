@@ -20,13 +20,16 @@ public class Main {
         try {
             boolean exit = false;
             while (!exit) {
-                System.out.println("1. Get car by id");
-                System.out.println("2. Get all cars");
-                System.out.println("3. Add a new car");
+                System.out.println("|--------------------------------------------------------------|");
+                System.out.println("|    SHINA                                                     |");
+                System.out.println("|                                                              |");
+                System.out.println("|  2.Get all cars    3.Add a new car   6.Search car by model   |");
+                System.out.println("|                                                                |");
+                System.out.println("|                                                              |");
                 System.out.println("4. Update an existing car");
                 System.out.println("5. Delete a car by id");
-                System.out.println("6. Exit");
-                System.out.println("7. Search car by model");
+                System.out.println("6. Search car by model");
+                System.out.println("7. Exit");
                 System.out.println("Enter your choice:");
 
                 int choice = scanner.nextInt();
@@ -38,7 +41,27 @@ public class Main {
                         System.out.println("Car by id: " + carById);
                         break;
                     case 2:
-                        List<Car> allCars = carRepository.getAll();
+                        System.out.println("Enter the sorting option:");
+                        System.out.println("1. Sort by year");
+                        System.out.println("2. Sort by price");
+                        System.out.println("3. No sorting");
+                        int option = scanner.nextInt();
+                        String sortBy = "";
+                        switch (option) {
+                            case 1:
+                                sortBy = "year";
+                                break;
+                            case 2:
+                                sortBy = "price";
+                                break;
+                            case 3:
+                                sortBy = "id";
+                                break;
+                            default:
+                                System.out.println("Invalid option");
+                                break;
+                        }
+                        List<Car> allCars = carRepository.getAll(sortBy);
                         System.out.println("All cars:");
                         for (Car car : allCars) {
                             System.out.println(car);
@@ -62,10 +85,10 @@ public class Main {
                         carRepository.delete(deleteId);
                         System.out.println("Car with id " + deleteId + " deleted.");
                         break;
-                    case 6:
+                    case 7:
                         exit = true;
                         break;
-                    case 7:
+                    case 6:
                         System.out.println("Enter car model to search:");
                         String model = scanner.next();
                         List<Car> carsByModel = carRepository.getByModel(model);

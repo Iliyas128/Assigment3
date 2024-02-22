@@ -18,7 +18,7 @@ public class CarService {
         cars.put("KIA", new ArrayList<>(Arrays.asList("Ceed","Cerato","K3","Picanto","Ray","Rio","K5","K7","K8","K9","Proceed","Soul","EV5","EV6","EV9","Mohave","Niro","Seltos","Sorento","Sportage","Telluride")));
         // Add other car brands and their models similarly
         cars.put("Hyuinday", new ArrayList<>(Arrays.asList("Accent","i10","i20","i30","Elantra","Grandeur","Sonata","Bayon","Palisade","Tucson","Staria")));
-        cars.put("Toyota", new ArrayList<>(Arrays.asList("Camry","Alphard","Land Cruiser","RAV4","Avalon","Corolla")));
+        cars.put("Toyota", new ArrayList<>(Arrays.asList("Supra","Camry","Alphard","Land Cruiser","RAV4","Avalon","Corolla","Mark","Mark2","Century","Crown","Yaris","C-HR","Highlander","Fortuner")));
         cars.put("Chevrolet", new ArrayList<>(Arrays.asList("Blazer","Bolt" ,"Chevrolet Camaro","Chevrolet Captiva"," Cobalt","Colorado","Corvette","Cruze","Damas","Equinox","Express", "Groov", "Impala", "Lacetti", "Malibu","Menlo", "Monza", "Nexia", "Niva","\n" +
                 "Onix","Orlando","Silverado","Spark" ,"Tahoe","Tracker","TrailBlazer","Traverse")));
         cars.put("LADA", new ArrayList<>(Arrays.asList("Vesta","Largus","X-cross","Granta","Niva","2101","2103","2105","2107","Samara","110","Kalina","Priora","Xray")));
@@ -73,4 +73,3 @@ public class CarService {
 
     // Move other car-related methods from your Main class to here
 }
-

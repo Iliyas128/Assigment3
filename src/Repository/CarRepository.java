@@ -39,10 +39,10 @@ public class CarRepository {private static final AtomicInteger count = new Atomi
             throw new RuntimeException(e);
         }
     }
-    public  List<Car> getAll() {
+    public  List<Car> getAll(String sortBy) {
         List<Car> cars = new ArrayList<>();
         try {
-            String query = "SELECT * FROM cars ORDER BY id asc ;";
+            String query = "SELECT * FROM cars ORDER BY " + sortBy + " asc ;";
             PreparedStatement st = connection.prepareStatement(query);
             ResultSet resultSet = st.executeQuery();
             while (resultSet.next()) {
